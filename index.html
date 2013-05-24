@@ -3,22 +3,33 @@
 <html>
 <head>
   <title>Javascript Flickr Badge</title>
+  <meta property="og:locale" content="en_US"/>
+ 	<meta property="og:site_name" content="Jyst"/>
+  <meta property="og:title" content="Javascript Flickr Badge"/>
+  <meta property="og:description" content="A fast and elegant way, using pure javascript, to display your Flickr photos on your Wordpress blog or any other website."/>
+ 	<meta property="og:image" content="https://raw.github.com/erikras/javascript-flickr-badge/master/images/logo.jpg"/>
+ 	<meta property="og:type" content="website"/>
+ 	<meta property="fb:app_id" content="382416648462252"/>
+ 	<meta property="fb:admins" content="1069836824"/>
+  <meta name="keywords" content="flickr,widget,plugin,wordpress,sidebar,photos,photostream,social networking,social,media,aggregator,javascript,web-based,webapp,facebook,twitter"/>
+  <meta name="description" content="A fast and elegant way, using pure javascript, to display your Flickr photos on your Wordpress blog or any other website."/>
+
   <link type="text/css" rel="stylesheet"
         href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css"/>
   <script type="text/javascript">
-    var jsfbcb=0;
-    function jsFlickrBadge(s,f){function q(h,A){var a=Math.floor(Math.random()*h);return 1<h&&a==A?q(h,A):a}function v(h,A){var a,f;for(a in h)if(h.hasOwnProperty(a)&&(f=A(h[a],a),void 0!==f))break;return f}function G(h){var a=h?h.split("px"):[];return 1<a.length?Number(a[0]):h}function H(h){return h&&"[object Array]"==toString.apply(h)}function T(h){var a=0,f=h.length;return function(){var l=h[a];a=(a+1)%f;return l}}function k(a){var f=document.documentElement;return H(a)?v(a,function(a){return a in f.style?
-    a:void 0}):k(["-webkit-"+a,"-moz-"+a,"-o-"+a,a])}var a,m;a=encodeURIComponent(f.flickrId);var l=f.size,x=f.rows,n=f.columns,r=f.animation,w=1E3*f.animationSpeed,t=1E3*f.animationPause,B=k("transition"),U=k("perspective"),M=k("backface-visibility"),C=k("transform"),N=k("transform-style"),D=k("box-shadow");"random"==r&&(r=["shuffle","zoom","vscroll","flipX","flipY"][q(3)]);"group"==f.feed?a="groups_pool.gne?id="+a:"contacts"==f.feed?a="photos_friends.gne?user_id="+a:"contactsAll"==f.feed?a="photos_friends.gne?user_id="+
-    a+"&displayAll=1":"friends"==f.feed?a="photos_friends.gne?user_id="+a+"&friends=1":"friendsAll"==f.feed?a="photos_friends.gne?user_id="+a+"&friends=1&displayAll=1":"favorites"==f.feed?a="photos_faves.gne?id="+a:(a="photos_public.gne?id="+a,f.tags&&(a+="&tags=".join(",",f.tags)));m="jsFlickrBadge"+jsfbcb++;window[m]=function(a){function f(a,d){var c;c=a.currentStyle?a.currentStyle[d]:window.getComputedStyle(a,null)[d];return G(c)}function m(a,d,c,b){var f=c/1E3+"s ease-in-out",g=[];H(a)||(a=[a]);v(d,
-    function(a,c){g.push(c+" "+f)});v(a,function(a){a.style[B]=g.join(",");a.img&&(a.img.style[B]=g.join(","));v(d,function(c,b){b==D&&a.img?a.img.style[b]=c:a.style[b]=c;if(("width"==b||"height"==b)&&a.img)a.img.style[b]=c})});b&&window.setTimeout(b,c)}function k(a,d,c,b){H(a)||(a=[a]);v(a,function(a){m(a,{top:f(a,"top")+d.y+"px",left:f(a,"left")+d.x+"px"},c)});window.setTimeout(b,c)}function E(a,d,c){var b=document.createElement("a");null!=d&&null!=c&&(F.appendChild(b),g||(g={left:f(b,"marginLeft"),
-    right:f(b,"marginRight"),top:f(b,"marginTop"),bottom:f(b,"marginBottom"),boxShadow:f(b,D)||"",zIndex:Number(f(b,"zIndex"))||0},g.height=g.top+l+g.bottom,g.width=g.left+l+g.right,s.style.height=x*g.height+"px",s.style.width=n*g.width+"px"),a.coords={row:d,col:c});b.href=a.link;b.target="_blank";b.title=a.title;b.rel="nofollow";b.style.position="absolute";d&&(b.style.top=d*g.height+"px");c&&(b.style.left=c*g.width+"px");b.style.width=l+"px";b.style.height=l+"px";b.style.border="none";b.style.padding=
-    "0";b.style.margin="0";b.img=document.createElement("img");b.img.alt=b.img.title=a.title;b.img.src=a.media.m.replace(/_m\.jpg/,"_s.jpg");b.img.style.width=l+"px";b.img.style.maxWidth="100%";b.img.style.height=l+"px";b.img.style.border="none";b.img.style.padding="0";b.img.style.margin="0";b.appendChild(b.img);b.photo=a;return b}function I(a){var d=q(u.length,y.index),c=u[d],b=c.photo.coords,f=O.splice(0,1)[0],e=E(f,b.row,b.col),h={},l={};y.index=d;c.style.zIndex=g.zIndex+1;e.img.style[C]="rotate"+
-    a+"(-180deg)";e.img.style.position="absolute";e.img.style.top="0";e.img.style.left="0";e.img.style.zIndex=g.zIndex+2;c.style[U]="200px";c.img.style[M]=e.img.style[M]="hidden";c.img.style[N]=e.img.style[N]="preserve-3d";c.img.style.zIndex=g.zIndex+3;h[C]="rotate"+a+"(180deg)";l[C]="rotate"+a+"(0deg)";c.appendChild(e.img);window.setTimeout(function(){m(e.img,l,w);m(c.img,h,w,function(){c.style[B]="inherit";c.style[C]="inherit";var e=E(f,b.row,b.col);c.parentNode.replaceChild(e,c);u.splice(d,1,e);O.push(c.photo);
-    I(a)})},t)}function P(){var a=q(n,y.x),d=q(n,y.y),c=p[d][a],b=1==q(2),e=1==q(2),h={height:l+"px",width:l+"px"},k={height:2*l+g.top+g.bottom+"px",width:2*l+g.left+g.right+"px"};h[D]=g.boxShadow;k[D]="5px 5px 10px rgba(0, 0, 0, 0.75)";y={x:a,y:d};0==a?e=!1:a==n-1&&(e=!0);0==d?b=!1:d==x-1&&(b=!0);b&&(h.top=f(c,"top")+"px",k.top=G(h.top)-g.height+"px");e&&(h.left=f(c,"left")+"px",k.left=G(h.left)-g.width+"px");c.style.zIndex=g.zIndex+1;m(c,k,w,function(){window.setTimeout(function(){m(c,h,w,function(){c.style.zIndex=
-    g.zIndex;window.setTimeout(P,t)})},t)})}function Q(){var a=[],d;for(d=0;d<n;d++)a[d]=E(R(),x,d),u.push(a[d]);window.setTimeout(function(){k(u,{x:0,y:-g.height},w,function(){v(u.splice(0,n),function(a){a.parentNode.removeChild(a)});Q()})},t)}function S(){var a=[],d,c={};0<e.row&&"d"!=e.last&&a.push(function(){return{row:e.row-1,col:e.col,last:"u"}});e.row+1<p.length&&"u"!=e.last&&a.push(function(){return{row:e.row+1,col:e.col,last:"d"}});0<e.col&&"r"!=e.last&&a.push(function(){return{row:e.row,col:e.col-
-    1,last:"l"}});e.col+1<p[0].length&&"l"!=e.last&&a.push(function(){return{row:e.row,col:e.col+1,last:"r"}});d=a[q(a.length)]();e.col>d.col?(c.x=g.width,c.y=0):e.col<d.col?(c.x=-g.width,c.y=0):e.row>d.row?(c.x=0,c.y=g.height):e.row<d.row&&(c.x=0,c.y=-g.height);k(p[d.row][d.col],c,w,function(){p[e.row][e.col]=p[d.row][d.col];delete p[d.row][d.col];e=d;window.setTimeout(S,t)})}var R=T(a.items),g,J=x*n,O=a.items.slice(J),y={},e,p=[],u=[],F;"shuffle"==r&&(J--,e={row:x-1,col:n-1});for(;s.firstChild;)s.removeChild(s.firstChild);
-    F=document.createElement("div");F.style.position="relative";s.appendChild(F);for(a=0;a<J;a++){var z=R(),K=Math.floor(a/n),L=a%n,z=E(z,K,L);0==L?p[K]=[z]:p[K][L]=z;u.push(z)}B&&("shuffle"==r?window.setTimeout(S,t):"vscroll"==r?(s.style.overflow="hidden",Q()):"zoom"==r?window.setTimeout(P,t):"flipX"==r?I("X"):"flipY"==r&&I("Y"))};a="http://api.flickr.com/services/feeds/"+a+"&lang=en-us&format=json&jsoncallback="+m;m=document.createElement("script");m.type="text/javascript";m.async=!0;m.src=a;document.body.appendChild(m)}
-    ;
+var jsfbcb=0;
+function jsFlickrBadge(s,f){function q(h,A){var a=Math.floor(Math.random()*h);return 1<h&&a==A?q(h,A):a}function v(h,A){var a,f;for(a in h)if(h.hasOwnProperty(a)&&(f=A(h[a],a),void 0!==f))break;return f}function G(h){var a=h?h.split("px"):[];return 1<a.length?Number(a[0]):h}function H(h){return h&&"[object Array]"==Object.prototype.toString.apply(h)}function T(h){var a=0,f=h.length;return function(){var l=h[a];a=(a+1)%f;return l}}function k(a){var f=document.documentElement;return H(a)?v(a,function(a){return a in
+f.style?a:void 0}):k(["-webkit-"+a,"-moz-"+a,"-o-"+a,a])}var a,m;a=encodeURIComponent(f.flickrId);var l=f.size,x=f.rows,n=f.columns,r=f.animation,w=1E3*f.animationSpeed,t=1E3*f.animationPause,B=k("transition"),U=k("perspective"),M=k("backface-visibility"),C=k("transform"),N=k("transform-style"),D=k("box-shadow");"random"==r&&(r=["shuffle","zoom","vscroll","flipX","flipY"][q(3)]);"group"==f.feed?a="groups_pool.gne?id="+a:"contacts"==f.feed?a="photos_friends.gne?user_id="+a:"contactsAll"==f.feed?a=
+"photos_friends.gne?user_id="+a+"&displayAll=1":"friends"==f.feed?a="photos_friends.gne?user_id="+a+"&friends=1":"friendsAll"==f.feed?a="photos_friends.gne?user_id="+a+"&friends=1&displayAll=1":"favorites"==f.feed?a="photos_faves.gne?id="+a:(a="photos_public.gne?id="+a,f.tags&&(a+="&tags=".join(",",f.tags)));m="jsFlickrBadge"+jsfbcb++;window[m]=function(a){function f(a,d){var c;c=a.currentStyle?a.currentStyle[d]:window.getComputedStyle(a,null)[d];return G(c)}function m(a,d,c,b){var f=c/1E3+"s ease-in-out",
+g=[];H(a)||(a=[a]);v(d,function(a,c){g.push(c+" "+f)});v(a,function(a){a.style[B]=g.join(",");a.img&&(a.img.style[B]=g.join(","));v(d,function(c,b){b==D&&a.img?a.img.style[b]=c:a.style[b]=c;if(("width"==b||"height"==b)&&a.img)a.img.style[b]=c})});b&&window.setTimeout(b,c)}function k(a,d,c,b){H(a)||(a=[a]);v(a,function(a){m(a,{top:f(a,"top")+d.y+"px",left:f(a,"left")+d.x+"px"},c)});window.setTimeout(b,c)}function E(a,d,c){var b=document.createElement("a");null!=d&&null!=c&&(F.appendChild(b),g||(g=
+{left:f(b,"marginLeft"),right:f(b,"marginRight"),top:f(b,"marginTop"),bottom:f(b,"marginBottom"),boxShadow:f(b,D)||"",zIndex:Number(f(b,"zIndex"))||0},g.height=g.top+l+g.bottom,g.width=g.left+l+g.right,s.style.height=x*g.height+"px",s.style.width=n*g.width+"px"),a.coords={row:d,col:c});b.href=a.link;b.target="_blank";b.title=a.title;b.rel="nofollow";b.style.position="absolute";d&&(b.style.top=d*g.height+"px");c&&(b.style.left=c*g.width+"px");b.style.width=l+"px";b.style.height=l+"px";b.style.border=
+"none";b.style.padding="0";b.style.margin="0";b.img=document.createElement("img");b.img.alt=b.img.title=a.title;b.img.src=a.media.m.replace(/_m\.jpg/,"_s.jpg");b.img.style.width=l+"px";b.img.style.maxWidth="100%";b.img.style.height=l+"px";b.img.style.border="none";b.img.style.padding="0";b.img.style.margin="0";b.appendChild(b.img);b.photo=a;return b}function I(a){var d=q(u.length,y.index),c=u[d],b=c.photo.coords,f=O.splice(0,1)[0],e=E(f,b.row,b.col),h={},l={};y.index=d;c.style.zIndex=g.zIndex+1;e.img.style[C]=
+"rotate"+a+"(-180deg)";e.img.style.position="absolute";e.img.style.top="0";e.img.style.left="0";e.img.style.zIndex=g.zIndex+2;c.style[U]="200px";c.img.style[M]=e.img.style[M]="hidden";c.img.style[N]=e.img.style[N]="preserve-3d";c.img.style.zIndex=g.zIndex+3;h[C]="rotate"+a+"(180deg)";l[C]="rotate"+a+"(0deg)";c.appendChild(e.img);window.setTimeout(function(){m(e.img,l,w);m(c.img,h,w,function(){c.style[B]="inherit";c.style[C]="inherit";var e=E(f,b.row,b.col);c.parentNode.replaceChild(e,c);u.splice(d,
+1,e);O.push(c.photo);I(a)})},t)}function P(){var a=q(n,y.x),d=q(n,y.y),c=p[d][a],b=1==q(2),e=1==q(2),h={height:l+"px",width:l+"px"},k={height:2*l+g.top+g.bottom+"px",width:2*l+g.left+g.right+"px"};h[D]=g.boxShadow;k[D]="5px 5px 10px rgba(0, 0, 0, 0.75)";y={x:a,y:d};0==a?e=!1:a==n-1&&(e=!0);0==d?b=!1:d==x-1&&(b=!0);b&&(h.top=f(c,"top")+"px",k.top=G(h.top)-g.height+"px");e&&(h.left=f(c,"left")+"px",k.left=G(h.left)-g.width+"px");c.style.zIndex=g.zIndex+1;m(c,k,w,function(){window.setTimeout(function(){m(c,
+h,w,function(){c.style.zIndex=g.zIndex;window.setTimeout(P,t)})},t)})}function Q(){var a=[],d;for(d=0;d<n;d++)a[d]=E(R(),x,d),u.push(a[d]);window.setTimeout(function(){k(u,{x:0,y:-g.height},w,function(){v(u.splice(0,n),function(a){a.parentNode.removeChild(a)});Q()})},t)}function S(){var a=[],d,c={};0<e.row&&"d"!=e.last&&a.push(function(){return{row:e.row-1,col:e.col,last:"u"}});e.row+1<p.length&&"u"!=e.last&&a.push(function(){return{row:e.row+1,col:e.col,last:"d"}});0<e.col&&"r"!=e.last&&a.push(function(){return{row:e.row,
+col:e.col-1,last:"l"}});e.col+1<p[0].length&&"l"!=e.last&&a.push(function(){return{row:e.row,col:e.col+1,last:"r"}});d=a[q(a.length)]();e.col>d.col?(c.x=g.width,c.y=0):e.col<d.col?(c.x=-g.width,c.y=0):e.row>d.row?(c.x=0,c.y=g.height):e.row<d.row&&(c.x=0,c.y=-g.height);k(p[d.row][d.col],c,w,function(){p[e.row][e.col]=p[d.row][d.col];delete p[d.row][d.col];e=d;window.setTimeout(S,t)})}var R=T(a.items),g,J=x*n,O=a.items.slice(J),y={},e,p=[],u=[],F;"shuffle"==r&&(J--,e={row:x-1,col:n-1});for(;s.firstChild;)s.removeChild(s.firstChild);
+F=document.createElement("div");F.style.position="relative";s.appendChild(F);for(a=0;a<J;a++){var z=R(),K=Math.floor(a/n),L=a%n,z=E(z,K,L);0==L?p[K]=[z]:p[K][L]=z;u.push(z)}B&&("shuffle"==r?window.setTimeout(S,t):"vscroll"==r?(s.style.overflow="hidden",Q()):"zoom"==r?window.setTimeout(P,t):"flipX"==r?I("X"):"flipY"==r&&I("Y"))};a="http://api.flickr.com/services/feeds/"+a+"&lang=en-us&format=json&jsoncallback="+m;m=document.createElement("script");m.type="text/javascript";m.async=!0;m.src=a;document.body.appendChild(m)}
+;
   </script>
   <style type="text/css">
     body {
@@ -269,13 +280,13 @@
     Fast and beautiful.</h1>
 
   <p class="lead">Display your photos on your website with this <em>pure javascript</em> widget.</p>
-  <a class="btn btn-large btn-success wordpress" href="#">
+  <a class="btn btn-large btn-success wordpress" href="http://downloads.wordpress.org/plugin/javascript-flickr-badge.2.0.zip">
 
     <img src="https://raw.github.com/erikras/javascript-flickr-badge/master/images/wordpress-icon.png" alt="Wordpress"/>
     Download Wordpress Plugin
   </a>
   - or -
-  <a class="btn btn-large btn-success javascript" href="#">
+  <a class="btn btn-large btn-success javascript" href="https://raw.github.com/erikras/javascript-flickr-badge/master/javascript-flickr-badge.min.js" target="_blank">
     <img src="https://raw.github.com/erikras/javascript-flickr-badge/master/images/javascript-flickr-badge-icon.png"
          alt="Javascript Flickr Badge"/>
     Download Javascript
@@ -298,53 +309,14 @@
 
   <div class="pills">
     <ul class="nav nav-pills">
-      <li id="pill-vscroll"><a href="javascript:jsfb_selectAnimation('vscroll')">Vertical Scroll</a></li>
-      <li id="pill-shuffle"><a href="javascript:jsfb_selectAnimation('shuffle')">Shuffle</a></li>
-      <li id="pill-zoom"><a href="javascript:jsfb_selectAnimation('zoom')">Zoom</a></li>
-      <li id="pill-flipX"><a href="javascript:jsfb_selectAnimation('flipX')">Flip Vertical</a></li>
-      <li id="pill-flipY"><a href="javascript:jsfb_selectAnimation('flipY')">Flip Horizontal</a></li>
+      <li id="pill-vscroll"><a href="#" onclick="jsfb_selectAnimation(event, 'vscroll');">Vertical Scroll</a></li>
+      <li id="pill-shuffle"><a href="#" onclick="jsfb_selectAnimation(event, 'shuffle');">Shuffle</a></li>
+      <li id="pill-zoom"><a href="#" onclick="jsfb_selectAnimation(event, 'zoom');">Zoom</a></li>
+      <li id="pill-flipX"><a href="#" onclick="jsfb_selectAnimation(event, 'flipX');">Flip Vertical</a></li>
+      <li id="pill-flipY"><a href="#" onclick="jsfb_selectAnimation(event, 'flipY');">Flip Horizontal</a></li>
     </ul>
   </div>
-  <script type="text/javascript">
-    function jsfb_hasClass(e, c) {
-      return e.className.match(new RegExp('(\\s|^)' + c + '(\\s|$)'));
-    }
-    function jsfb_addClass(e, c) {
-      if (!jsfb_hasClass(e, c)) {
-        e.className += " " + c;
-      }
-    }
 
-    function jsfb_removeClass(e, c) {
-      if (jsfb_hasClass(e, c)) {
-        e.className = e.className.replace(new RegExp('(\\s|^)' + c + '(\\s|$)'), ' ');
-      }
-    }
-    function jsfb_selectAnimation(animation) {
-      jsFlickrBadge(document.getElementById('jsFlickrBadgeDemo1'), {
-        flickrId: '40969270@N00',
-        feed: 'group',
-        rows: 4,
-        columns: 4,
-        size: 75,
-        animation: animation,
-        animationSpeed: 1,
-        animationPause: 2
-      });
-      var pills = document.querySelectorAll('.featurette .nav-pills li');
-      for (var i = 0; i < pills.length; i++) {
-        var a = pills[i].id.substr(5);
-        if (animation == a) {
-          jsfb_addClass(pills[i], 'active');
-        }
-        else {
-          jsfb_removeClass(pills[i], 'active');
-        }
-      }
-      return false;
-    }
-    jsfb_selectAnimation('vscroll');
-  </script>
 </div>
 
 <hr class="featurette-divider"/>
@@ -358,8 +330,7 @@
     <span class="muted">It's fast!</span></h2>
 
   <p class="lead">By not requiring a heavy javascript library like JQuery (91K) or Prototype (91K), you can
-    drastically
-    reduce page load times.</p>
+    drastically reduce page load times.</p>
 
 </div>
 
@@ -375,7 +346,7 @@
     <span class="muted">Easy!</span></h2>
 
   <p class="lead">Adding your Flickr photos to your Wordpress sidebar could not be easier with the Javascript Flickr
-    Badge Wordpress widget. All the settings are configurable in your blog's admin. Simply download and install the
+    Badge Wordpress widget. All the settings are configurable in your blog's admin. Simply <a href="http://downloads.wordpress.org/plugin/javascript-flickr-badge.2.0.zip">download</a> and install the
     plugin into /wp-admin/plugins, activate it, and drag the widget to your Wordpress sidebar.</p>
 
   <p class="lead">You can add spacing between the photos by adding a <code>#jsFlickrBadge a { margin: 5px; }</code>
@@ -652,8 +623,51 @@ window.twttr.ready(function (twttr)
 	var s = document.getElementsByTagName('script')[0];
 	s.parentNode.insertBefore(po, s);
 })();
-</script>
 
+  function jsfb_hasClass(e, c) {
+    return e.className.match(new RegExp('(\\s|^)' + c + '(\\s|$)'));
+  }
+  function jsfb_addClass(e, c) {
+    if (!jsfb_hasClass(e, c)) {
+      e.className += " " + c;
+    }
+  }
+
+  function jsfb_removeClass(e, c) {
+    if (jsfb_hasClass(e, c)) {
+      e.className = e.className.replace(new RegExp('(\\s|^)' + c + '(\\s|$)'), ' ');
+    }
+  }
+  function jsfb_selectAnimation(event, animation) {
+    jsFlickrBadge(document.getElementById('jsFlickrBadgeDemo1'), {
+      flickrId: '40969270@N00',
+      feed: 'group',
+      rows: 4,
+      columns: 4,
+      size: 75,
+      animation: animation,
+      animationSpeed: 1,
+      animationPause: 2
+    });
+    var pills = document.querySelectorAll('.featurette .nav-pills li');
+    for (var i = 0; i < pills.length; i++) {
+      var a = pills[i].id.substr(5);
+      if (animation == a) {
+        jsfb_addClass(pills[i], 'active');
+      }
+      else {
+        jsfb_removeClass(pills[i], 'active');
+      }
+    }
+    if(event){
+      if(event.preventDefault)
+        event.preventDefault();
+      else
+        event.returnValue = false;
+    }
+  }
+  jsfb_selectAnimation(null, 'vscroll');
+</script>
 
 
 </body>
