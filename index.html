@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+  <title>Javascript Flickr Badge</title>
+  <link type="text/css" rel="stylesheet"
+        href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css"/>
+  <script type="text/javascript" src="javascript-flickr-badge.min.js"></script>
+  <style type="text/css">
+    body {
+      padding-top: 20px;
+      padding-bottom: 40px;
+    }
+
+      /* Custom container */
+    .container-narrow {
+      margin: 0 auto;
+      max-width: 700px;
+    }
+
+    .container-narrow > hr {
+      margin: 30px 0;
+    }
+
+      /* Main marketing message and sign up button */
+    .jumbotron {
+      margin: 60px 0;
+      text-align: center;
+    }
+
+    .jumbotron h1 {
+      font-size: 72px;
+      line-height: 1;
+    }
+
+    .jumbotron .btn {
+      font-size: 21px;
+      padding: 14px 24px;
+    }
+
+      /* Supporting marketing content */
+    .marketing {
+      margin: 60px 0;
+    }
+
+    .marketing p + h4 {
+      margin-top: 28px;
+    }
+
+    .featurette-divider {
+      margin: 40px 0; /* Space out the Bootstrap <hr> more */
+    }
+
+    .featurette {
+      padding-top: 20px;
+      overflow: hidden;
+    }
+
+    .featurette .demo {
+      width: 324px;
+      height: 324px;
+    }
+
+    .featurette .demo a {
+      margin: 3px;
+    }
+
+    .featurette .featurette-image.pull-left,
+    .featurette .demo.pull-left {
+      margin-right: 40px;
+    }
+
+    .featurette .featurette-image.pull-right,
+    .featurette .demo.pull-right {
+      margin-left: 40px;
+    }
+
+    .featurette .nav-pills {
+      width: 500px;
+      margin: 10px auto;
+    }
+
+    .featurette .nav-pills li {
+      margin: 0 3px;
+    }
+
+    .browser-support td,
+    .browser-support thead th {
+      text-align: center;
+    }
+
+    .browser-support td.yes {
+      background-color: #cfc;
+    }
+
+    .table-striped.browser-support tbody>tr:nth-child(odd)>td.yes {
+      background-color: #beb;
+    }
+
+    .element-id {
+      color: #900;
+    }
+    @media (max-width: 979px) {
+
+      .featurette {
+        height: auto;
+        padding: 0;
+      }
+
+      .featurette-image.pull-left,
+      .featurette-image.pull-right {
+        display: block;
+        float: none;
+        max-width: 40%;
+        margin: 0 auto 20px;
+      }
+    }
+
+    @media (max-width: 767px) {
+
+      .featurette-heading {
+        font-size: 30px;
+      }
+
+      .featurette .lead {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+    }
+
+      /* Thin out the marketing headings */
+    .featurette-heading {
+      font-size: 50px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+    .btn.btn-large.btn-success {
+      position: relative;
+      padding-left: 50px;
+    }
+
+    .btn.btn-large.btn-success img {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .btn.btn-large.btn-success.wordpress img {
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 15px;
+    }
+
+    .btn.btn-large.btn-success.javascript img {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-narrow">
+
+<div class="masthead">
+  <img class="pull-right" src="images/logo.jpg" width="50" height="50"
+       alt="Logo"/>
+
+  <h3 class="muted">Javascript Flickr Badge</h3>
+</div>
+<hr/>
+<div class="jumbotron">
+  <h1>Your Flickr photos.
+    <br/>
+    Fast and beautiful.</h1>
+
+  <p class="lead">Display your photos on your website with this <em>pure javascript</em> widget.</p>
+  <a class="btn btn-large btn-success wordpress" href="#">
+
+    <img src="images/wordpress-icon.png" alt="Wordpress"/>
+    Download Wordpress Plugin
+  </a>
+  - or -
+  <a class="btn btn-large btn-success javascript" href="#">
+    <img src="images/javascript-flickr-badge-icon.png" alt="Javascript Flickr Badge"/>
+    Download Javascript
+  </a>
+</div>
+
+<hr/>
+
+<div class="featurette">
+  <div class="demo pull-right" id="jsFlickrBadgeDemo1">
+
+  </div>
+
+  <h2 class="featurette-heading">Beautiful animations. <span
+      class="muted">Pure CSS3.</span></h2>
+
+  <p class="lead">With a wide variety of gorgeous animations, you can make your photos as subtle or as vibrant a
+    presence on your website as you like. Give them a
+    try...</p>
+
+  <div class="pills">
+    <ul class="nav nav-pills">
+      <li id="pill-vscroll"><a href="javascript:jsfb_selectAnimation('vscroll')">Vertical Scroll</a></li>
+      <li id="pill-shuffle"><a href="javascript:jsfb_selectAnimation('shuffle')">Shuffle</a></li>
+      <li id="pill-zoom"><a href="javascript:jsfb_selectAnimation('zoom')">Zoom</a></li>
+      <li id="pill-flipX"><a href="javascript:jsfb_selectAnimation('flipX')">Flip Vertical</a></li>
+      <li id="pill-flipY"><a href="javascript:jsfb_selectAnimation('flipY')">Flip Horizontal</a></li>
+    </ul>
+  </div>
+  <script type="text/javascript">
+    function jsfb_hasClass(e, c) {
+      return e.className.match(new RegExp('(\\s|^)' + c + '(\\s|$)'));
+    }
+    function jsfb_addClass(e, c) {
+      if (!jsfb_hasClass(e, c)) {
+        e.className += " " + c;
+      }
+    }
+
+    function jsfb_removeClass(e, c) {
+      if (jsfb_hasClass(e, c)) {
+        e.className = e.className.replace(new RegExp('(\\s|^)' + c + '(\\s|$)'), ' ');
+      }
+    }
+    function jsfb_selectAnimation(animation) {
+      jsFlickrBadge(document.getElementById('jsFlickrBadgeDemo1'), {
+        flickrId: '40969270@N00',
+        feed: 'group',
+        rows: 4,
+        columns: 4,
+        size: 75,
+        animation: animation,
+        animationSpeed: 1,
+        animationPause: 2
+      });
+      var pills = document.querySelectorAll('.featurette .nav-pills li');
+      console.info(pills);
+      for (var i = 0; i < pills.length; i++) {
+        var a = pills[i].id.substr(5);
+        if (animation == a) {
+          jsfb_addClass(pills[i], 'active');
+        }
+        else {
+          jsfb_removeClass(pills[i], 'active');
+        }
+      }
+      return false;
+    }
+    jsfb_selectAnimation('vscroll');
+  </script>
+</div>
+
+<hr class="featurette-divider"/>
+
+<div class="featurette">
+  <img class="featurette-image pull-left" src="images/speedometer.png" width="400" height="407" alt="Speed!"/>
+
+  <h2 class="featurette-heading">Only 5K,<br/>2K gzipped.
+    <span class="muted">It's fast!</span></h2>
+
+  <p class="lead">By not requiring a heavy javascript library like JQuery (91K) or Prototype (91K), you can
+    drastically
+    reduce page load times.</p>
+
+</div>
+
+<hr class="featurette-divider"/>
+
+<div class="featurette">
+  <img class="featurette-image pull-right" src="images/plugin-screenshot-reflection.png" width="232" height="600"
+       alt="Widget"/>
+
+  <h2 class="featurette-heading">Wordpress Plugin.
+    <span class="muted">Easy!</span></h2>
+
+  <p class="lead">Adding your Flickr photos to your Wordpress sidebar could not be easier with the Javascript Flickr
+    Badge Wordpress widget. All the settings are configurable in your blog's admin. Simply download and install the
+    plugin into /wp-admin/plugins, activate it, and drag the widget to your Wordpress sidebar.</p>
+
+  <p class="lead">You can add spacing between the photos by adding a <code>#jsFlickrBadge a { margin: 5px; }</code>
+    style to your theme's CSS.</p>
+
+</div>
+
+<hr/>
+
+<div>
+  <h2 class="featurette-heading">Cross Browser Support</h2>
+  <img src="images/five-browsers.png" width="700" height="131" alt="Five Browsers"/>
+
+  <table class="table table-striped browser-support">
+    <thead>
+    <tr>
+      <th></th>
+      <th>Chrome</th>
+      <th>Firefox</th>
+      <th>Opera</th>
+      <th>Safari</th>
+      <th>Internet Explorer</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th>No Animation</th>
+      <td class="yes">ALL</td>
+      <td class="yes">ALL</td>
+      <td class="yes">ALL</td>
+      <td class="yes">ALL</td>
+      <td class="yes">ALL</td>
+    </tr>
+    <tr>
+      <th>Vertical Scroll</th>
+      <td class="yes">4.0+</td>
+      <td class="yes">4.0+</td>
+      <td class="yes">10.5+</td>
+      <td class="yes">3.1+</td>
+      <td class="yes">10.0+</td>
+    </tr>
+    <tr>
+      <th>Shuffle</th>
+      <td class="yes">4.0+</td>
+      <td class="yes">4.0+</td>
+      <td class="yes">10.5+</td>
+      <td class="yes">3.1+</td>
+      <td class="yes">10.0+</td>
+    </tr>
+    <tr>
+      <th>Zoom</th>
+      <td class="yes">4.0+</td>
+      <td class="yes">4.0+</td>
+      <td class="yes">10.5+</td>
+      <td class="yes">3.1+</td>
+      <td class="yes">10.0+</td>
+    </tr>
+    <tr>
+      <th>Flip Vertical</th>
+      <td class="yes">12.0+</td>
+      <td class="yes">10.0+</td>
+      <td>NO</td>
+      <td class="yes">4.0+</td>
+      <td class="yes">10.0+</td>
+    </tr>
+    <tr>
+      <th>Flip Horizontal</th>
+      <td class="yes">12.0+</td>
+      <td class="yes">10.0+</td>
+      <td>NO</td>
+      <td class="yes">4.0+</td>
+      <td class="yes">10.0+</td>
+    </tr>
+    <tr>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr/>
+
+<h2 class="featurette-heading">Configuration</h2>
+
+<p class="lead">
+  You must provide a Flickr ID (<a href="http://idgettr.com/" target="_blank">find yours here</a>) and select a type of
+  photo stream to display. Below is a description of the available feeds.
+</p>
+
+<table class="table table-striped">
+  <tbody>
+  <tr>
+    <th>user</th>
+    <td>public photos from your user photostream</td>
+  </tr>
+  <tr>
+    <th>contacts</th>
+    <td>public photos, one per contact, of your contacts</td>
+  </tr>
+  <tr>
+    <th>contactsAll</th>
+    <td>public photos, many per contact, of contacts</td>
+  </tr>
+  <tr>
+    <th>friends</th>
+    <td>public photos, one per contact, of your contacts marked as "friend"</td>
+  </tr>
+  <tr>
+    <th>friendsAll</th>
+    <td>public photos, many per contact, of contacts marked as "friend"</td>
+  </tr>
+  <tr>
+    <th>favorites</th>
+    <td>public photos you have marked as "favorite"</td>
+  </tr>
+  <tr>
+    <th>group</th>
+    <td>public photos from a group (use group id for Flickr ID)</td>
+  </tr>
+  </tbody>
+</table>
+
+<h2 class="featurette-heading">Non-Wordpress Installation</h2>
+
+<p class="lead">
+  Calling the Javascript Flickr Badge from any web page is easy. You can rename <span class="element-id">myElement</span> to whatever you wish.
+</p>
+
+<p class="lead">
+  CSS:
+</p>
+<pre>
+#<span class="element-id">myElement</span> a {
+  margin: 5px; // optional margin value (may be different for each side)
+}
+</pre>
+<p class="lead">
+  HTML:
+</p>
+<pre>
+&lt;div id="<span class="element-id">myElement</span>"&gt;&lt;/div&gt;
+&lt;script type="text/javascript" src="javascript-flickr-badge.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+  jsFlickrBadge(document.getElementById('<span class="element-id">myElement</span>'), {
+      // your Flickr ID (<a href="http://idgettr.com/" target="_blank">find it here</a>)
+      flickrId: '23585397@N00',
+      // feed type. user, group, contacts, etc.
+      feed: 'user',
+      // optional comma-delimited tags to filter by, only used with 'user' feed
+      tags: 'badge,awesome',
+      // number of rows to display
+      rows: 4,
+      // number of columns to display
+      columns: 4,
+      // size of each thumbnail (any bigger than 75 will cause pixelization)
+      size: 75,
+      // animation to use.
+      // one of: vscroll, random, vscroll, shuffle, zoom, scroll, flipX, flipY
+      animation: 'vscroll',
+      // seconds each animation takes
+      animationSpeed: 1,
+      // seconds between each animation
+      animationPause: 2
+    });
+&lt;/script&gt;
+</pre>
+
+<p class="lead">
+  That's it! You're done.
+</p>
+
+<hr/>
+
+<div class="footer">
+  <p>&copy; Jyst 2013</p>
+</div>
+
+</div>
+</body>
+</html>
